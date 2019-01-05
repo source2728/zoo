@@ -7,14 +7,14 @@
       <ZipSelected>True</ZipSelected>
       <RecordScatteredDependencyAssetsSelected>False</RecordScatteredDependencyAssetsSelected>
       <UncompressedAssetBundleSelected>False</UncompressedAssetBundleSelected>
-      <DisableWriteTypeTreeSelected>False</DisableWriteTypeTreeSelected>
+      <DisableWriteZooEventIdTreeSelected>False</DisableWriteZooEventIdTreeSelected>
       <DeterministicAssetBundleSelected>True</DeterministicAssetBundleSelected>
       <ForceRebuildAssetBundleSelected>False</ForceRebuildAssetBundleSelected>
-      <IgnoreTypeTreeChangesSelected>False</IgnoreTypeTreeChangesSelected>
+      <IgnoreZooEventIdTreeChangesSelected>False</IgnoreZooEventIdTreeChangesSelected>
       <AppendHashToAssetBundleNameSelected>False</AppendHashToAssetBundleNameSelected>
       <ChunkBasedCompressionSelected>True</ChunkBasedCompressionSelected>
-      <BuildEventHandlerTypeName>
-      </BuildEventHandlerTypeName>
+      <BuildEventHandlerZooEventIdName>
+      </BuildEventHandlerZooEventIdName>
       <OutputDirectory>E:/DemoProject/ZOO/Unity/release</OutputDirectory>
     </Settings>
   </AssetBundleBuilder>

@@ -39,6 +39,7 @@ public class ZooController : MonoBehaviour
     {
         Inst = this;
         GameEntry.Event.Subscribe(EvtTempDataUpdated.EventId, OnEvtTempDataUpdated);
+        GameEntry.Event.Subscribe(EvtEventTriggered.EventId, OnEvtEventTriggered);
 
         GObject holder = m_GesturePanel.ui.GetChild("holder");
         holder.onClick.Add(OnClick);
@@ -57,15 +58,15 @@ public class ZooController : MonoBehaviour
 
         RotationGesture = new RotationGesture(holder);
         RotationGesture.onAction.Add(OnRotate);
-
-        var d = Instantiate(TestGameObject);
-        d.transform.SetParent(GoCharactorList.transform, true);
-        d.AddComponent<ThiefAI>();
     }
 
-    void OnDestroy()
+    private void OnEvtEventTriggered(object sender, GameEventArgs e)
     {
-//        GameEntry.Event.Unsubscribe(EvtTempDataUpdated.EventId, OnEvtTempDataUpdated);
+        var evt = e as EvtEventTriggered;
+        var d = new GameObject("Event");
+        d.transform.SetParent(GoCharactorList.transform, true);
+        var controller = d.AddComponent<EventObjectController>();
+        controller.EventId = evt.ZooEventId;
     }
 
     private void OnEvtTempDataUpdated(object sender, GameEventArgs e)

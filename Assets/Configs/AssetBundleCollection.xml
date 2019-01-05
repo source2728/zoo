@@ -2,11 +2,11 @@
 <UnityGameFramework>
   <AssetBundleCollection>
     <AssetBundles>
-      <AssetBundle Name="Configs" LoadType="0" Packed="False" />
-      <AssetBundle Name="Databases" LoadType="0" Packed="False" />
-      <AssetBundle Name="DataTables" LoadType="0" Packed="False" />
-      <AssetBundle Name="Scenes" LoadType="0" Packed="True" />
-      <AssetBundle Name="ZooObject" LoadType="0" Packed="False" />
+      <AssetBundle Name="Configs" LoadZooEventId="0" Packed="False" />
+      <AssetBundle Name="Databases" LoadZooEventId="0" Packed="False" />
+      <AssetBundle Name="DataTables" LoadZooEventId="0" Packed="False" />
+      <AssetBundle Name="Scenes" LoadZooEventId="0" Packed="True" />
+      <AssetBundle Name="ZooObject" LoadZooEventId="0" Packed="False" />
     </AssetBundles>
     <Assets>
       <Asset Guid="437cf1e672324a84cab39828b2d32a82" AssetBundleName="ZooObject" />

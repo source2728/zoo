@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameFramework;
+using UnityEngine;
 using UnityGameFramework.Runtime;
 
 public class TriggerEventCommand : BaseCommand
@@ -21,6 +22,9 @@ public class TriggerEventCommand : BaseCommand
         if (result == ECommandResult.Success)
         {
             GameEntry.UI.ShowSecretaryTips("发生突发事件！");
+            var evt = ReferencePool.Acquire<EvtEventTriggered>();
+            evt.ZooEventId = EventId;
+            GameEntry.Event.Fire(this, evt);
             return true;
         }
         return false;

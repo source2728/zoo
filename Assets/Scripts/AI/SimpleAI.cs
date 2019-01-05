@@ -5,7 +5,9 @@ using Random = UnityEngine.Random;
 
 public class SimpleAI : MonoBehaviour
 {
-    protected SceneObject Agent;
+    public SceneObject Agent;
+    public GameObject GoParent;
+
     protected Vector2Int CurGrid;
     protected Vector2Int MoveTargetGrid;
     protected float MoveTimePreGrid = 2f;
@@ -13,7 +15,7 @@ public class SimpleAI : MonoBehaviour
     protected void RandAppear()
     {
         CurGrid = new Vector2Int(Random.Range(5, 15), Random.Range(5, 15));
-        transform.position = MapHelper.GridToScenePoint(CurGrid);
+        GoParent.transform.position = MapHelper.GridToScenePoint(CurGrid);
     }
 
     protected void RandMove()
@@ -30,8 +32,8 @@ public class SimpleAI : MonoBehaviour
     protected void MoveToGrid(Vector2Int grid)
     {
         var position = MapHelper.GridToScenePoint(grid);
-        transform.forward = position - transform.position;
-        transform.DOMove(position, MoveTimePreGrid).OnComplete(OnMoveToGridFinish);
+        GoParent.transform.forward = position - GoParent.transform.position;
+        GoParent.transform.DOMove(position, MoveTimePreGrid).OnComplete(OnMoveToGridFinish);
         Agent.DoMove();
         MoveTargetGrid = grid;
     }
@@ -42,6 +44,6 @@ public class SimpleAI : MonoBehaviour
 
     protected void OnDisappear()
     {
-        Destroy(gameObject);
+        Destroy(GoParent);
     }
 }

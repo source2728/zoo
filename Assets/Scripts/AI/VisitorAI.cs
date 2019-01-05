@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-public class ThiefAI : SimpleAI
+public class VisitorAI : SimpleAI
 {
     private long AppearStartTime;
     private const long TotalAppearTime = 20;
@@ -10,6 +10,7 @@ public class ThiefAI : SimpleAI
     void Start()
     {
         MoveTimePreGrid = 2f;
+        Agent = GetComponent<SceneObject>();
         AppearStartTime = TimeUtil.CurrentTime();
         RandAppear();
         RandMove();

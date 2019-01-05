@@ -258,7 +258,7 @@ public class FGuiResourceManager : IResourceManager
     public void LoadUIFormSuccessCallback(string uiFormAssetName, object uiFormAsset, float duration, object userData)
     {
         //TextAsset textAsset = uiFormAsset as TextAsset;
-        //UIPackage.AddPackage(textAsset.bytes, "", new UIPackage.LoadResource(async (string name, string extension, Type type, out DestroyMethod destroyMethod) => {
+        //UIPackage.AddPackage(textAsset.bytes, "", new UIPackage.LoadResource(async (string name, string extension, ZooEventId type, out DestroyMethod destroyMethod) => {
         //    destroyMethod = new DestroyMethod();
         //    await 
         //};));
