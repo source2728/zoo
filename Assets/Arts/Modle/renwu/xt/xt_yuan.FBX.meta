@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: b49436e0e84054d4b87dbb44ef172b9b
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: dai01
+    100002: dai02
+    100004: dai03
+    100006: dai04
+    100008: dai_md
+    100010: xt
+    100012: xt_dz
+    100014: xt_tou
+    100016: xt_tou_md
+    100018: xt_tun
+    100020: xt_xiong
+    100022: xt_ydtui
+    100024: xt_yqbi
+    100026: xt_ysbi
+    100028: xt_yshou
+    100030: xt_yshou_md
+    100032: xt_ytui_md
+    100034: //RootNode
+    100036: xt_yxtui
+    100038: xt_zdtui
+    100040: xt_zqbi
+    100042: xt_zsbi
+    100044: xt_zshou
+    100046: xt_zshou_md
+    100048: xt_ztui_md
+    100050: xt_zxtui
+    400000: dai01
+    400002: dai02
+    400004: dai03
+    400006: dai04
+    400008: dai_md
+    400010: xt
+    400012: xt_dz
+    400014: xt_tou
+    400016: xt_tou_md
+    400018: xt_tun
+    400020: xt_xiong
+    400022: xt_ydtui
+    400024: xt_yqbi
+    400026: xt_ysbi
+    400028: xt_yshou
+    400030: xt_yshou_md
+    400032: xt_ytui_md
+    400034: //RootNode
+    400036: xt_yxtui
+    400038: xt_zdtui
+    400040: xt_zqbi
+    400042: xt_zsbi
+    400044: xt_zshou
+    400046: xt_zshou_md
+    400048: xt_ztui_md
+    400050: xt_zxtui
+    2100000: 'Material #288'
+    4300000: xt_dz
+    4300002: xt
+    9500000: //RootNode
+    13700000: xt
+    13700002: xt_dz
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

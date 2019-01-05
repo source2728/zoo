@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UnityGameFramework>
+  <AssetBundleCollection>
+    <AssetBundles>
+      <AssetBundle Name="Configs" LoadType="0" Packed="False" />
+      <AssetBundle Name="Databases" LoadType="0" Packed="False" />
+      <AssetBundle Name="DataTables" LoadType="0" Packed="False" />
+      <AssetBundle Name="Scenes" LoadType="0" Packed="True" />
+      <AssetBundle Name="ZooObject" LoadType="0" Packed="False" />
+    </AssetBundles>
+    <Assets>
+      <Asset Guid="437cf1e672324a84cab39828b2d32a82" AssetBundleName="ZooObject" />
+      <Asset Guid="5adae17c658c9f843a61b22c9e9bea57" AssetBundleName="Scenes" />
+      <Asset Guid="6384a2991ab9af247a6472f3df1673de" AssetBundleName="Databases" />
+      <Asset Guid="8f6b8227ef7a7ad4aabf4944a83918ef" AssetBundleName="DataTables" />
+      <Asset Guid="a71f8bb1b1b2c51438e2bafc884cb02c" AssetBundleName="DataTables" />
+      <Asset Guid="ab8c3b9d01fef074087a155949364bf3" AssetBundleName="Configs" />
+    </Assets>
+  </AssetBundleCollection>
+</UnityGameFramework>

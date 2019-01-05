@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b2a3b64f505b34dae213f9e13385b8, type: 3}
+  m_Name: DefaultLocalData
+  m_EditorClassIdentifier: 
+  Money: 500
+  SecretaryDialogs:
+  - "\u52A8\u7269\u56ED\u7684\u89C4\u5212\u548C\u5EFA\u8BBE\u5FC5\u987B\u7B26\u5408\u57CE\u5E02\u603B\u4F53\u89C4\u5212\u53CA\u57CE\u5E02\u56ED\u6797\u548C\u7EFF\u5316\u89C4\u5212\uFF0C\u5E76\u8FDB\u884C\u7EDF\u7B79\u5B89\u6392\uFF0C\u534F\u8C03\u53D1\u5C55\u3002"
+  - "\u52A8\u7269\u751F\u6D3B\u8D8A\u9AD8\u5174\u8D8A\u80FD\u5438\u5F15\u6E38\u5BA2\u54E6\u3002"
+  - "\u957F\u9888\u9E7F\u9002\u5408\u5728\u8349\u5730\u751F\u6D3B\uFF0C\u5B83\u4EEC\u66F4\u559C\u6B22\u751F\u6D3B\u5728\u7FA4\u4F53\u91CC\u3002"
+  - "\u5927\u7B28\u8C61\u9002\u5408\u5728\u8349\u5730\u751F\u6D3B\uFF0C\u4ED6\u4EEC\u66F4\u559C\u6B22\u751F\u6D3B\u5728\u7FA4\u4F53\u91CC\u3002"
+  GuardDialogs:
+  - "\u6211\u7684\u62F3\u5934\u5927\u8FC7\u7802\u9505\uFF01"
+  - "\u6211\u4F1A\u800D\u53CC\u622A\u68CD\uFF01"
+  - "\u6240\u6709\u5C0F\u5077\u5728\u6211\u9762\u524D\u90FD\u65E0\u6240\u9041\u5F62\uFF01"
+  ActorData:
+    ActorName: "\u6709\u3001\u5C0F\u5E05"
+    ActorPopular: 2
+    IncomeBonus: 20
+    SecretaryName: "\u5C0F\u59D0\u59D0"
+    GuardName: "\u5927\u4FDD\u9556"
+    ActorHonorName: "\u61F5\u61F5\u61C2\u61C2"
+  ZooData:
+    Name: "\u73E0\u6D77\u957F\u9686\u52A8\u7269\u56ED"
+    Popular: 2
+    VisitorLike: 2
+    Price: 30
+    AnimalCount: 0
+    AnimalHappiness: 0
+    VisitorCount: 0
+    ExpectIncome: 0
