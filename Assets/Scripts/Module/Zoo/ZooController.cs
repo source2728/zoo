@@ -31,13 +31,14 @@ public class ZooController : MonoBehaviour
     public SceneOptController SceneOptController;
 
     public Dictionary<int, ZooObjectController> m_BuildingGoMap = new Dictionary<int, ZooObjectController>();
+    public Dictionary<int, StaffController> StaffGoMap = new Dictionary<int, StaffController>();
 
     public GameObject GoCharactorList;
-    public GameObject TestGameObject;
 
     void Start()
     {
         Inst = this;
+        GameEntry.Event.Subscribe(EvtDataUpdated.EventId, OnEvtDataUpdated);
         GameEntry.Event.Subscribe(EvtTempDataUpdated.EventId, OnEvtTempDataUpdated);
         GameEntry.Event.Subscribe(EvtEventTriggered.EventId, OnEvtEventTriggered);
 
@@ -60,13 +61,32 @@ public class ZooController : MonoBehaviour
         RotationGesture.onAction.Add(OnRotate);
     }
 
+    private void OnEvtDataUpdated(object sender, GameEventArgs e)
+    {
+        foreach (var staffData in GameEntry.Database.Staff.StaffList)
+        {
+            AddStaffObject(staffData.Uid);
+        }
+    }
+
     private void OnEvtEventTriggered(object sender, GameEventArgs e)
     {
         var evt = e as EvtEventTriggered;
+        AddEventObject(evt.ZooEventId);
+    }
+
+    private void AddEventObject(int eventId)
+    {
         var d = new GameObject("Event");
         d.transform.SetParent(GoCharactorList.transform, true);
         var controller = d.AddComponent<EventObjectController>();
-        controller.EventId = evt.ZooEventId;
+        controller.EventId = eventId;
+    }
+
+    private void AddStaffObject(int staffId)
+    {
+        var d = new GameObject("Staff");
+        d.transform.SetParent(GoCharactorList.transform, true);
     }
 
     private void OnEvtTempDataUpdated(object sender, GameEventArgs e)
