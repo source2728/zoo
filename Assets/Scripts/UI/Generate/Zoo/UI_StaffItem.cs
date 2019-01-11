@@ -7,6 +7,7 @@ namespace Zoo
 {
 	public partial class UI_StaffItem : GComponent
 	{
+		public GLoader m_LoaderIcon;
 		public GButton m_BtnFire;
 		public GTextField m_LabelName;
 
@@ -25,8 +26,9 @@ namespace Zoo
 		{
 			base.ConstructFromXML(xml);
 
-			m_BtnFire = (GButton)this.GetChildAt(1);
-			m_LabelName = (GTextField)this.GetChildAt(2);
+			m_LoaderIcon = (GLoader)this.GetChildAt(1);
+			m_BtnFire = (GButton)this.GetChildAt(2);
+			m_LabelName = (GTextField)this.GetChildAt(3);
 		}
 	}
 }

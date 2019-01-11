@@ -2,19 +2,19 @@
 <UnityGameFramework>
   <AssetBundleBuilder>
     <Settings>
-      <InternalResourceVersion>2</InternalResourceVersion>
+      <InternalResourceVersion>3</InternalResourceVersion>
       <Platforms>128</Platforms>
       <ZipSelected>True</ZipSelected>
       <RecordScatteredDependencyAssetsSelected>False</RecordScatteredDependencyAssetsSelected>
       <UncompressedAssetBundleSelected>False</UncompressedAssetBundleSelected>
-      <DisableWriteZooEventIdTreeSelected>False</DisableWriteZooEventIdTreeSelected>
+      <DisableWriteTypeTreeSelected>False</DisableWriteTypeTreeSelected>
       <DeterministicAssetBundleSelected>True</DeterministicAssetBundleSelected>
       <ForceRebuildAssetBundleSelected>False</ForceRebuildAssetBundleSelected>
-      <IgnoreZooEventIdTreeChangesSelected>False</IgnoreZooEventIdTreeChangesSelected>
+      <IgnoreTypeTreeChangesSelected>False</IgnoreTypeTreeChangesSelected>
       <AppendHashToAssetBundleNameSelected>False</AppendHashToAssetBundleNameSelected>
       <ChunkBasedCompressionSelected>True</ChunkBasedCompressionSelected>
-      <BuildEventHandlerZooEventIdName>
-      </BuildEventHandlerZooEventIdName>
+      <BuildEventHandlerTypeName>
+      </BuildEventHandlerTypeName>
       <OutputDirectory>E:/DemoProject/ZOO/Unity/release</OutputDirectory>
     </Settings>
   </AssetBundleBuilder>

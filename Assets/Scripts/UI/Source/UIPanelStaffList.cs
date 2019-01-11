@@ -27,6 +27,7 @@ public class UIPanelStaffList : UIFormWin
         var data = UI.m_List.GetData<StaffData>(index);
         var item = obj as UI_StaffItem;
         item.m_LabelName.SetText(data.Name);
+        item.m_LoaderIcon.SetStaffIcon(data.Id);
         item.m_BtnFire.onClick.Set((() =>
         {
             GameEntry.UI.OpenUIForm<UI_PanelFire>(data);

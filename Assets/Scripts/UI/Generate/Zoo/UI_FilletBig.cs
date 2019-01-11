@@ -7,6 +7,7 @@ namespace Zoo
 {
 	public partial class UI_FilletBig : GButton
 	{
+		public GLoader m_LoaderIcon;
 		public GTextField m_LabelCost;
 
 		public const string URL = "ui://5voe50hll9uh1y";
@@ -24,6 +25,7 @@ namespace Zoo
 		{
 			base.ConstructFromXML(xml);
 
+			m_LoaderIcon = (GLoader)this.GetChildAt(1);
 			m_LabelCost = (GTextField)this.GetChildAt(2);
 		}
 	}

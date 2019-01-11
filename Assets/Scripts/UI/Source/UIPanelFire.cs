@@ -22,6 +22,7 @@ public class UIPanelFire : UIFormWin
         var data = userData as StaffData;
         UI.m_LabelContent.SetValue(data.Name);
         UI.m_LabelCost.SetText(FireStaffCommand.GetCost(data.Id));
+        UI.m_LoaderIcon.SetStaffIcon(data.Id);
     }
 
     private void OnClickEnter()

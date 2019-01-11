@@ -14,9 +14,13 @@ public class StateNormal : FsmState<ProcedureGame>
         Log.Info("StateNormal OnEnter");
         SubscribeEvent(EvtEnterBuildEdit.EventId, OnEvtEnterBuildEdit);
         SubscribeEvent(EvtEnterDamageEdit.EventId, OnEvtEnterDamageEdit);
+        SubscribeEvent(EvtEnterFenceAreaEdit.EventId, OnEvtEnterFenceAreaEdit);
         GameEntry.Event.Subscribe(EvtClickScene.EventId, OnEvtClickScene);
         ZooController.Inst.SwipeGesture.onMove.Add(OnSwipeMove);
         ZooController.Inst.HideSceneOptUI();
+
+        ZooController.Inst.EnableSwipe = true;
+        GameEntry.TempData.Edit.ClearData();
     }
 
     protected override void OnLeave(IFsm<ProcedureGame> procedureOwner, bool isShutdown)
@@ -29,6 +33,7 @@ public class StateNormal : FsmState<ProcedureGame>
         ZooController.Inst.SwipeGesture.onMove.Remove(OnSwipeMove);
 
         GameEntry.Event.Unsubscribe(EvtClickScene.EventId, OnEvtClickScene);
+        UnsubscribeEvent(EvtEnterFenceAreaEdit.EventId, OnEvtEnterFenceAreaEdit);
         UnsubscribeEvent(EvtEnterBuildEdit.EventId, OnEvtEnterBuildEdit);
         UnsubscribeEvent(EvtEnterDamageEdit.EventId, OnEvtEnterDamageEdit);
         Log.Info("StateNormal OnLeave");
@@ -64,5 +69,10 @@ public class StateNormal : FsmState<ProcedureGame>
     private void OnEvtEnterDamageEdit(IFsm<ProcedureGame> fsm, object sender, object userData)
     {
         ChangeState<StateEdit>(fsm);
+    }
+
+    private void OnEvtEnterFenceAreaEdit(IFsm<ProcedureGame> fsm, object sender, object userData)
+    {
+        ChangeState<StateBuildFenceArea>(fsm);
     }
 }

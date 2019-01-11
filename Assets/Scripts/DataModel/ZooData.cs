@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class ZooData
@@ -13,6 +14,8 @@ public class ZooData
 
     public int VisitorCount;
     public int ExpectIncome;
+
+    public List<int> UnlockAreaIds = new List<int>();
 
     public void Fill(ZooData data)
     {

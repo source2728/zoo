@@ -15,8 +15,10 @@ namespace Zoo
 		public GTextField m_LabelTax;
 		public GTextField m_LabelIncome;
 		public GTextField m_LabelVisitorCount;
+		public GLoader m_LoaderIcon;
 		public GButton m_BtnCancel;
 		public GButton m_BtnSetting;
+		public GComponent m_BtnJump;
 
 		public const string URL = "ui://5voe50hlsbaz4l";
 
@@ -41,8 +43,10 @@ namespace Zoo
 			m_LabelTax = (GTextField)this.GetChildAt(5);
 			m_LabelIncome = (GTextField)this.GetChildAt(6);
 			m_LabelVisitorCount = (GTextField)this.GetChildAt(9);
+			m_LoaderIcon = (GLoader)this.GetChildAt(10);
 			m_BtnCancel = (GButton)this.GetChildAt(11);
 			m_BtnSetting = (GButton)this.GetChildAt(12);
+			m_BtnJump = (GComponent)this.GetChildAt(13);
 		}
 	}
 }

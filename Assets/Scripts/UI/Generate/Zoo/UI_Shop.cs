@@ -7,6 +7,7 @@ namespace Zoo
 {
 	public partial class UI_Shop : GButton
 	{
+		public GLoader m_LoaderIcon;
 		public GTextField m_LabelName;
 		public GTextField m_LabelIncome;
 		public GTextField m_LabelVisitorCount;
@@ -26,7 +27,8 @@ namespace Zoo
 		{
 			base.ConstructFromXML(xml);
 
-			m_LabelName = (GTextField)this.GetChildAt(1);
+			m_LoaderIcon = (GLoader)this.GetChildAt(1);
+			m_LabelName = (GTextField)this.GetChildAt(2);
 			m_LabelIncome = (GTextField)this.GetChildAt(4);
 			m_LabelVisitorCount = (GTextField)this.GetChildAt(5);
 		}

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EventDatabase : BaseDatabase
 {
-    protected List<int> EventList { get; set; } = new List<int>();
+    public List<int> EventList { get; set; } = new List<int>();
 
     public override void ClearData()
     {
@@ -28,5 +28,11 @@ public class EventDatabase : BaseDatabase
     {
         IsDirty = true;
         EventList.Add(eventId);
+    }
+
+    public void RemoveEvent(int frontCount)
+    {
+        IsDirty = true;
+        EventList.RemoveRange(0, frontCount);
     }
 }

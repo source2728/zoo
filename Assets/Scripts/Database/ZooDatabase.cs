@@ -36,4 +36,10 @@ public class ZooDatabase : BaseDatabase
         IsDirty = true;
         ZooData.Price = newPrice;
     }
+
+    public void UnlockZooArea(int areaId)
+    {
+        IsDirty = true;
+        ZooData.UnlockAreaIds.Add(areaId);
+    }
 }

@@ -17,11 +17,19 @@ public class EditTempData : BaseTempData
     public int SelectBuildWidth { get; private set; }
     public int SelectBuildHeight { get; private set; }
 
+    public int SelectLandId { get; private set; }
+    public int SelectFenceId { get; private set; }
+
     public Dictionary<int, FenceAreaData> FenceAreaMap { get; private set; } = new Dictionary<int, FenceAreaData>();
     protected int FenceAreaUid = 0;
 
     public override void ClearData()
     {
+        foreach (var editData in SummaryObjectList)
+        {
+            editData.Count = 0;
+        }
+
         FenceAreaMap.Clear();
         FenceObjectList.Clear();
         EditingObjectList.Clear();
@@ -185,6 +193,18 @@ public class EditTempData : BaseTempData
                 SelectBuildWidth = deploy.Width;
                 SelectBuildHeight = deploy.Height;
             }
+            else if (buildType == EZooObjectType.Facility)
+            {
+                var deploy = GameEntry.DataTable.GetDataTableRow<DRFacility>(buildId);
+                SelectBuildWidth = deploy.Width;
+                SelectBuildHeight = deploy.Height;
+            }
+            else if (buildType == EZooObjectType.Land)
+            {
+                var deploy = GameEntry.DataTable.GetDataTableRow<DRLand>(buildId);
+                SelectBuildWidth = deploy.Width;
+                SelectBuildHeight = deploy.Height;
+            }
         }
         else
         {
@@ -200,5 +220,15 @@ public class EditTempData : BaseTempData
     public void SetSelectedBuildData(BuildData buildData)
     {
         SelectedBuildData = buildData;
+    }
+
+    public void UpdateSelectFenceAreaInfo(int landId, int fenceId)
+    {
+        SelectBuildType = EZooObjectType.FenceArea;
+        SelectBuildId = fenceId;
+        SelectLandId = landId;
+        SelectFenceId = fenceId;
+        SelectBuildWidth = 1;
+        SelectBuildHeight = 1;
     }
 }

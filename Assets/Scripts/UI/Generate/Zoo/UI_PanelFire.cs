@@ -8,6 +8,7 @@ namespace Zoo
 	public partial class UI_PanelFire : GComponent
 	{
 		public GLabel m_frame;
+		public GLoader m_LoaderIcon;
 		public GTextField m_LabelContent;
 		public GButton m_BtnEnter;
 		public GTextField m_LabelCost;
@@ -28,9 +29,10 @@ namespace Zoo
 			base.ConstructFromXML(xml);
 
 			m_frame = (GLabel)this.GetChildAt(0);
-			m_LabelContent = (GTextField)this.GetChildAt(1);
-			m_BtnEnter = (GButton)this.GetChildAt(3);
-			m_LabelCost = (GTextField)this.GetChildAt(4);
+			m_LoaderIcon = (GLoader)this.GetChildAt(1);
+			m_LabelContent = (GTextField)this.GetChildAt(2);
+			m_BtnEnter = (GButton)this.GetChildAt(4);
+			m_LabelCost = (GTextField)this.GetChildAt(5);
 		}
 	}
 }

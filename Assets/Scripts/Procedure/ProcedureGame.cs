@@ -25,6 +25,8 @@ public class ProcedureGame : ProcedureBase
         GameEntry.Event.Subscribe(EvtMainUIShown.EventId, OnEvtMainUIShown);
         GameEntry.Event.Subscribe(EvtEnterBuildEdit.EventId, OnEvtEnterBuildEdit);
         GameEntry.Event.Subscribe(EvtEnterDamageEdit.EventId, OnEvtEnterDamageEdit);
+        GameEntry.Event.Subscribe(EvtEnterFenceAreaEdit.EventId, OnEvtEnterFenceAreaEdit);
+        GameEntry.Event.Subscribe(EvtJumpToGrid.EventId, OnEvtJumpToGrid);
 
         m_ChangeStateType = 0;
         Log.Info("ProcedureGame OnEnter");
@@ -34,11 +36,13 @@ public class ProcedureGame : ProcedureBase
         m_Fsm = GameEntry.Fsm.CreateFsm(this,
             new StateNormal(),
             new StateBuild(),
+            new StateBuildFenceArea(),
             new StateEdit());
 
         GameEntry.UI.OpenUIForm<UI_ZooView>(this);
 
         ZooController.Inst.StartGame();
+        AudioManager.inst.PlayBgAudio("bgm");
     }
 
     private void LoadUIFormSuccessCallback(string assetName, object asset, float duration, object userData)
@@ -51,6 +55,8 @@ public class ProcedureGame : ProcedureBase
     {
         GameEntry.Fsm.DestroyFsm(m_Fsm);
 
+        GameEntry.Event.Unsubscribe(EvtJumpToGrid.EventId, OnEvtJumpToGrid);
+        GameEntry.Event.Unsubscribe(EvtEnterFenceAreaEdit.EventId, OnEvtEnterFenceAreaEdit);
         GameEntry.Event.Unsubscribe(EvtEnterBuildEdit.EventId, OnEvtEnterBuildEdit);
         GameEntry.Event.Unsubscribe(EvtEnterDamageEdit.EventId, OnEvtEnterDamageEdit);
         GameEntry.Event.Unsubscribe(EvtMainUIShown.EventId, OnEvtMainUIShown);
@@ -58,6 +64,12 @@ public class ProcedureGame : ProcedureBase
         GameEntry.Event.Unsubscribe(EvtTranToVisit.EventId, OnEvtTranToVisit);
         base.OnLeave(procedureOwner, isShutdown);
         Log.Info("ProcedureGame OnLeave {0}", isShutdown);
+    }
+
+    private void OnEvtJumpToGrid(object sender, GameEventArgs e)
+    {
+        var evt = e as EvtJumpToGrid;
+        ZooController.Inst.MoveToGrid(evt.Grid);
     }
 
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -92,6 +104,11 @@ public class ProcedureGame : ProcedureBase
     }
 
     private void OnEvtEnterDamageEdit(object sender, GameEventArgs e)
+    {
+        m_Fsm.FireEvent(this, e.Id, e);
+    }
+
+    private void OnEvtEnterFenceAreaEdit(object sender, GameEventArgs e)
     {
         m_Fsm.FireEvent(this, e.Id, e);
     }

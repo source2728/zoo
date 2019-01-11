@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using FairyGUI;
+using GameFramework.Task;
 using UnityEngine;
 
 public class TestTerrain : MonoBehaviour
@@ -18,6 +19,6 @@ public class TestTerrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        TaskManager
     }
 }

@@ -38,6 +38,17 @@ public class StaffDatabase : BaseDatabase
         return JsonUtility.ToJson(new Serialization<StaffData>(m_StaffList));
     }
 
+    public StaffData GetStaffData(int uid)
+    {
+        foreach (var data in m_StaffList)
+        {
+            if (data.Uid == uid)
+                return data;
+        }
+
+        return null;
+    }
+
     public void AddStaff(StaffData data)
     {
         IsDirty = true;

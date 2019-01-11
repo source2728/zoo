@@ -8,4 +8,10 @@
         Edit = AddTempData<EditTempData>();
         ObjectScene = AddTempData<ObjectSceneTempData>();
     }
+
+    public void Reset()
+    {
+        Edit.ClearData();
+        ObjectScene.ClearData();
+    }
 }

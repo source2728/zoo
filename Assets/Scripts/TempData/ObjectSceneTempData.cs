@@ -136,6 +136,7 @@ public class ObjectSceneTempData : BaseTempData
         var data = GameEntry.TempData.ObjectScene.GetSceneObjectData(uid);
         AddToBuildedMap(data);
         data.Status = ESceneObjectStatus.Remove;
+        DirtyList.Add(uid);
     }
 
     public void UpdateBuildInfoByEdit(int uid, Vector2Int grid)
@@ -204,10 +205,40 @@ public class ObjectSceneTempData : BaseTempData
 
     public void ConfirmEditToBuilded()
     {
+        DirtyList.Clear();
         foreach (var map in SceneObjectMap)
         {
-            map.Value.Status = ESceneObjectStatus.Builded;
+            if (map.Value.Status == ESceneObjectStatus.Add)
+            {
+                map.Value.Status = ESceneObjectStatus.Builded;
+                DirtyList.Add(map.Key);
+            }
         }
+        BuildedInfoMap.Clear();
+    }
+
+    public void ConfirmEditToEdited()
+    {
+        List<int> deleteList = new List<int>();
+        DirtyList.Clear();
+        foreach (var map in SceneObjectMap)
+        {
+            if (map.Value.Status == ESceneObjectStatus.Remove)
+            {
+                deleteList.Add(map.Key);
+                DirtyList.Add(map.Key);
+            }
+            else
+            {
+                map.Value.Status = ESceneObjectStatus.Builded;
+                DirtyList.Add(map.Key);
+            }
+        }
+        foreach (var uid in deleteList)
+        {
+            SceneObjectMap.Remove(uid);
+        }
+        BuildedInfoMap.Clear();
     }
 
     public void CancelEdit()
@@ -225,6 +256,7 @@ public class ObjectSceneTempData : BaseTempData
                 var data = BuildedInfoMap[map.Key];
                 map.Value.BuildData.Rect.position = data.Rect.position;
                 map.Value.BuildData.Rotate = data.Rotate;
+                map.Value.Status = ESceneObjectStatus.Builded;
                 DirtyList.Add(map.Key);
             }
         }
@@ -233,5 +265,6 @@ public class ObjectSceneTempData : BaseTempData
         {
             SceneObjectMap.Remove(uid);
         }
+        BuildedInfoMap.Clear();
     }
 }

@@ -23,7 +23,6 @@ public class UIPanelShopSetting : UIFormWin
 		base.OnInit();
 		UI = contentPane as UI_PanelShopSetting;
 	    UI.m_BtnCancel.onClick.Set(Close);
-        UI.m_BtnPointToScene.onClick.Set(OnClickPointToScene);
         UI.m_BtnSetting.onClick.Set(OnClickSetting);
         UI.m_BtnMinus.onClick.Set(OnClickMinus);
 	    UI.m_BtnPlus.onClick.Set(OnClickPlus);
@@ -35,10 +34,6 @@ public class UIPanelShopSetting : UIFormWin
     {
         var data = userData as ShopData;
         Price = data.Price;
-    }
-
-    private void OnClickPointToScene(EventContext context)
-    {
     }
 
     private void OnClickSetting(EventContext context)

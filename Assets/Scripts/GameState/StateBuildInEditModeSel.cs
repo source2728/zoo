@@ -34,6 +34,8 @@ public class StateBuildInEditModeSel : FsmState<StateBuild>
 
     protected override void OnLeave(IFsm<StateBuild> procedureOwner, bool isShutdown)
     {
+        ZooController.Inst.EnableSwipe = true;
+
         UnsubscribeEvent(StateBuild.EvtSwipeBegin, OnEvtSwipeBegin);
         UnsubscribeEvent(StateBuild.EvtSwipeMove, OnEvtSwipeMove);
         UnsubscribeEvent(StateBuild.EvtChangeBuildMode, OnEvtChangeBuildMode);
@@ -115,7 +117,14 @@ public class StateBuildInEditModeSel : FsmState<StateBuild>
         Vector2Int grid = MapHelper.ScenePointToGrid(scenePoint);
 
         var data = GameEntry.TempData.ObjectScene.GetSceneObjectData(grid);
-        IsMovingSelObject = data.ObjectUid == GameEntry.TempData.Edit.SelectedBuildData.BuildSceneUid;
+        if (data != null)
+        {
+            IsMovingSelObject = data.ObjectUid == GameEntry.TempData.Edit.SelectedBuildData.BuildSceneUid;
+        }
+        else
+        {
+            IsMovingSelObject = false;
+        }
         ZooController.Inst.EnableSwipe = !IsMovingSelObject;
     }
 

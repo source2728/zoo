@@ -66,6 +66,7 @@ public class UIPanelHandbook : UIFormWin
             {
                 DRAnimal deploy = UI.m_List.GetData<DRAnimal>(index);
                 item.m_LabelName.SetText(deploy.Name);
+                item.m_LoaderIcon.SetAnimalIcon(deploy.Id);
             }
                 break;
 
@@ -73,6 +74,7 @@ public class UIPanelHandbook : UIFormWin
             {
                 DRFacility deploy = UI.m_List.GetData<DRFacility>(index);
                 item.m_LabelName.SetText(deploy.Name);
+                item.m_LoaderIcon.SetFacilityIcon(deploy.Id);
             }
                 break;
 
@@ -80,6 +82,7 @@ public class UIPanelHandbook : UIFormWin
             {
                 DRLand deploy = UI.m_List.GetData<DRLand>(index);
                 item.m_LabelName.SetText(deploy.Name);
+                item.m_LoaderIcon.SetLandIcon(deploy.Id);
             }
                 break;
 
@@ -87,6 +90,7 @@ public class UIPanelHandbook : UIFormWin
             {
                 DRFence deploy = UI.m_List.GetData<DRFence>(index);
                 item.m_LabelName.SetText(deploy.Name);
+                item.m_LoaderIcon.SetFenceIcon(deploy.Id);
             }
                 break;
         }

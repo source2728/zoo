@@ -12,29 +12,11 @@ public class UIZooView : UIFormWin
     public static UIZooView Inst;
     public UI_ZooView UI { get; private set; }
 
-    protected bool _IsShowingMenu;
-    protected bool IsShowingMenu
-    {
-        get { return _IsShowingMenu; }
-        set
-        {
-            if (value)
-            {
-                UI.GetTransition("ShowMenu").Play();
-            }
-            else
-            {
-                UI.GetTransition("HideMenu").Play();
-            }
-            _IsShowingMenu = value;
-        }
-    }
-
     protected override void DoShown(object userData)
     {
         GameEntry.Event.Subscribe(EvtTempDataUpdated.EventId, OnEvtTempDataUpdated);
+        GameEntry.Event.Subscribe(EvtFinishEdit.EventId, OnEvtFinishEdit);
         UI.m_BtnHand.visible = false;
-        _IsShowingMenu = false;
         Inst = this;
         var evt = ReferencePool.Acquire<EvtMainUIShown>();
         GameEntry.Event.Fire(this, evt);
@@ -42,6 +24,7 @@ public class UIZooView : UIFormWin
 
     protected override void OnHide()
     {
+        GameEntry.Event.Unsubscribe(EvtFinishEdit.EventId, OnEvtFinishEdit);
         GameEntry.Event.Unsubscribe(EvtTempDataUpdated.EventId, OnEvtTempDataUpdated);
         base.OnHide();
     }
@@ -72,8 +55,12 @@ public class UIZooView : UIFormWin
         UI.m_ListBuildItems.onClickItem.Set(OnChangeBuildItem);
         UI.m_ViewState.onChanged.Set(OnChangeViewState);
         UI.m_ListBuildingObjects.itemRenderer = OnEditObjectItemRenderer;
+        UI.m_ListEditingObjects.itemRenderer = OnEditObjectItemRenderer;
+        UI.m_ListLand.itemRenderer = OnLandItemRenderer;
+        UI.m_ListFence.itemRenderer = OnFenceItemRenderer;
+        UI.m_ListLand.onClickItem.Set(OnChangeFenceAreaInfo);
+        UI.m_ListFence.onClickItem.Set(OnChangeFenceAreaInfo);
 
-        UI.m_BtnMenu.onClick.Set(OnClickMenu);
         UI.m_BtnCloseEdit.onClick.Set(OnCloseEdit);
         UI.m_BtnEnterBuild.onClick.Set(OnClickEnterBuild);
         UI.m_BtnEnterEdit.onClick.Set(OnClickEnterEdit);
@@ -84,9 +71,27 @@ public class UIZooView : UIFormWin
         UI.m_BtnHand.onChanged.Set(OnChangeHandState);
     }
 
+    private void OnFenceItemRenderer(int index, GObject obj)
+    {
+        var data = UI.m_ListFence.GetData<DRFence>(index);
+        var item = obj as UI_ItemFenceAreaBuild;
+        item.m_LabelName.SetText(data.Name);
+        item.m_LoaderIcon.SetFenceIcon(data.Id);
+    }
+
+    private void OnLandItemRenderer(int index, GObject obj)
+    {
+        var data = UI.m_ListLand.GetData<DRLand>(index);
+        var item = obj as UI_ItemFenceAreaBuild;
+        item.m_LabelName.SetText(data.Name);
+        item.m_LoaderIcon.SetLandIcon(data.Id);
+    }
+
     private void OnResetData()
     {
         GameEntry.Database.ResetGame();
+        GameEntry.TempData.Reset();
+        GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtDataReseted>());
     }
 
     private void OnUndoEdit()
@@ -97,14 +102,29 @@ public class UIZooView : UIFormWin
 
     private void OnChangeViewState(EventContext context)
     {
-        if (UI.m_ViewState.selectedIndex != 0)
+        if (UI.m_ViewState.selectedIndex == 1)
         {
-            UI.m_BuildType.selectedIndex = 1;
+            GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtEnterBuildEdit>());
+        }
+        else if (UI.m_ViewState.selectedIndex == 2)
+        {
+            GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtEnterDamageEdit>());
+        }
+        else if (UI.m_ViewState.selectedIndex == 3)
+        {
+            GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtEnterFenceAreaEdit>());
         }
     }
 
     private void OnChangeHandState(EventContext context)
     {
+        if (!UI.m_BtnHand.selected)
+        {
+            UI.m_ListBuildItems.selectedIndex = 0;
+            GameEntry.TempData.Edit.UpdateSelectBuildInfo((EZooObjectType)UI.m_BuildType.selectedIndex,
+                UI.m_ListBuildItems.GetSelectedData<IDataRow>().Id);
+        }
+
         var evt = ReferencePool.Acquire<EvtChangeTouchState>();
         evt.CanSwipeScene = UI.m_BtnHand.selected;
         GameEntry.Event.Fire(this, evt);
@@ -117,11 +137,6 @@ public class UIZooView : UIFormWin
         GameEntry.Event.Fire(this, evt);
     }
 
-    private void OnClickMenu(EventContext context)
-    {
-        IsShowingMenu = !IsShowingMenu;
-    }
-
     private void OnClickMenuItem(EventContext context)
     {
         GObject btnObject = context.data as GObject;
@@ -129,16 +144,6 @@ public class UIZooView : UIFormWin
         {
             case "MenuInfo":
                 GameEntry.UI.OpenUIForm<UI_PanelTotalInfo>();              
-                break;
-
-            case "MenuBuild":
-                GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtEnterBuildEdit>());
-                UI.m_ViewState.selectedIndex = 1;
-                break;
-
-            case "MenuDamage":
-                GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtEnterDamageEdit>());
-                UI.m_ViewState.selectedIndex = 2;
                 break;
 
             case "MenuAnimal":
@@ -165,43 +170,61 @@ public class UIZooView : UIFormWin
                 GameEntry.UI.OpenUIForm<UI_PanelAchievement>();
                 break;
         }
-        IsShowingMenu = false;
+
+        UI.m_MainMenuState.selectedIndex = 0;
     }
 
     private void OnCloseEdit(EventContext context)
     {
-        UI.m_ViewState.selectedIndex = 0;
         var evt = ReferencePool.Acquire<EvtFinishEdit>();
         evt.IsConfirmEdit = false;
         GameEntry.Event.Fire(this, evt);
+    }
+
+    private void OnEvtFinishEdit(object sender, GameEventArgs e)
+    {
+        UI.m_ViewState.selectedIndex = 0;
     }
 
     private void OnChangeBuildType()
     {
         switch (UI.m_BuildType.selectedIndex)
         {
-            case 1:
-                UI.m_ListBuildItems.SetData(GameEntry.DataTable.GetDataTable<DRFence>().GetAllDataRows());
-                break;
-
-            case 2:
+            case 4:
                 UI.m_ListBuildItems.SetData(GameEntry.DataTable.GetDataTable<DRLand>().GetAllDataRows());
                 break;
 
             case 3:
-                UI.m_ListBuildItems.SetData(GameEntry.DataTable.GetDataTable<DRAnimal>().GetAllDataRows());
-                break;
-
-            case 4:
                 UI.m_ListBuildItems.SetData(GameEntry.DataTable.GetDataTable<DRFacility>().GetAllDataRows());
                 break;
 
-            case 5:
+            case 2:
                 UI.m_ListBuildItems.SetData(GameEntry.DataTable.GetDataTable<DRShop>().GetAllDataRows());
                 break;
         }
-        UI.m_ListBuildItems.selectedIndex = 0;
-        OnChangeBuildItem();
+
+        if (UI.m_BuildType.selectedIndex > 1)
+        {
+            UI.m_ListBuildItems.selectedIndex = 0;
+            OnChangeBuildItem();
+        }
+        else if (UI.m_BuildType.selectedIndex == 1)
+        {
+            //            UI.m_ListLand.SetData(GameEntry.DataTable.GetDataTable<DRLand>().GetAllDataRows());
+            //            UI.m_ListFence.SetData(GameEntry.DataTable.GetDataTable<DRFence>().GetAllDataRows());
+
+            UI.m_ListLand.SetData(new DRLand[]{ GameEntry.DataTable.GetDataTableRow<DRLand>(5) });
+            UI.m_ListFence.SetData(new DRFence[] { GameEntry.DataTable.GetDataTableRow<DRFence>(1) });
+            UI.m_ListLand.selectedIndex = 0;
+            UI.m_ListFence.selectedIndex = 0;
+            OnChangeFenceAreaInfo();
+        }
+    }
+
+    private void OnChangeFenceAreaInfo()
+    {
+        GameEntry.TempData.Edit.UpdateSelectFenceAreaInfo(UI.m_ListLand.GetSelectedData<IDataRow>().Id,
+            UI.m_ListFence.GetSelectedData<IDataRow>().Id);
     }
 
     public int LastSelectBuildType = -1;
@@ -213,21 +236,11 @@ public class UIZooView : UIFormWin
         {
             UI.m_ListBuildItems.selectedIndex = -1;
             GameEntry.TempData.Edit.UpdateSelectBuildInfo((EZooObjectType) UI.m_BuildType.selectedIndex, 0);
-//            GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtTempDataUpdated>());
-            //            var evt = ReferencePool.Acquire<EvtChangeBuildItem>();
-            //            evt.ObjectType = (EZooObjectType)UI.m_BuildType.selectedIndex;
-            //            evt.ObjectId = 0;
-            //            GameEntry.Event.Fire(this, evt);
         }
         else
         {
             GameEntry.TempData.Edit.UpdateSelectBuildInfo((EZooObjectType)UI.m_BuildType.selectedIndex, 
                 UI.m_ListBuildItems.GetSelectedData<IDataRow>().Id);
-//            GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtTempDataUpdated>());
-            //            var evt = ReferencePool.Acquire<EvtChangeBuildItem>();
-            //            evt.ObjectType = (EZooObjectType)UI.m_BuildType.selectedIndex;
-            //            evt.ObjectId = UI.m_ListBuildItems.GetSelectedData<IDataRow>().Id;
-            //            GameEntry.Event.Fire(this, evt);
         }
 
         LastSelectBuildType = UI.m_BuildType.selectedIndex;
@@ -239,39 +252,28 @@ public class UIZooView : UIFormWin
         var item = obj as UI_FilletBig;
 
         switch (UI.m_BuildType.selectedIndex)
-        {
-            case 1:
-            {
-                var data = UI.m_ListBuildItems.GetData<DRFence>(index);
-                item.m_LabelCost.SetText(data.BuildCost);
-                break;
-            }
-                
-            case 2:
+        {                
+            case 4:
             {
                 var data = UI.m_ListBuildItems.GetData<DRLand>(index);
                 item.m_LabelCost.SetText(data.BuildCost);
-                break;
-            }
-                
-            case 3:
-            {
-                var data = UI.m_ListBuildItems.GetData<DRAnimal>(index);
-                item.m_LabelCost.SetText(data.BuyCost);
+                item.m_LoaderIcon.SetLandIcon(data.Id);
                 break;
             }
 
-            case 4:
+            case 3:
             {
                 var data = UI.m_ListBuildItems.GetData<DRFacility>(index);
                 item.m_LabelCost.SetText(data.BuildCost);
+                item.m_LoaderIcon.SetFacilityIcon(data.Id);
                 break;
             }
 
-            case 5:
+            case 2:
             {
                 var data = UI.m_ListBuildItems.GetData<DRShop>(index);
                 item.m_LabelCost.SetText(data.BuildCost);
+                item.m_LoaderIcon.SetShopIcon(data.Id);
                 break;
             }
         }
@@ -307,6 +309,18 @@ public class UIZooView : UIFormWin
         var item = obj as UI_FilletSmall;
         item.m_LabelCount.SetValue(data.Count);
         item.m_LabelMoney.SetText(data.Count * data.GetCost());
+        if (data.BuildType == (int) EZooObjectType.Land)
+        {
+            item.m_LoaderIcon.SetLandIcon(data.BuildId);
+        }
+        else if (data.BuildType == (int)EZooObjectType.Facility)
+        {
+            item.m_LoaderIcon.SetFacilityIcon(data.BuildId);
+        }
+        else if (data.BuildType == (int)EZooObjectType.Shop)
+        {
+            item.m_LoaderIcon.SetShopIcon(data.BuildId);
+        }
     }
 
     private void OnClickEnterBuild()
@@ -316,10 +330,14 @@ public class UIZooView : UIFormWin
 
     private void OnClickEnterEdit()
     {
-        EditObjectCommand.Do();
-//        UI.m_ViewState.selectedIndex = 0;
-//        var evt = ReferencePool.Acquire<EvtConfirmEdit>();
-//        GameEntry.Event.Fire(this, evt);
+        if (UI.m_ViewState.selectedIndex == 2)
+        {
+            EditObjectCommand.Do();
+        }
+        else if (UI.m_ViewState.selectedIndex == 3)
+        {
+            BuildObjectCommand.Do();
+        }
     }
 
     public void RefreshWithBuildInEditMode()

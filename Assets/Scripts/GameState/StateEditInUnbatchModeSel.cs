@@ -78,7 +78,14 @@ public class StateEditInUnbatchModeSel : FsmState<StateEdit>
         Vector2Int grid = MapHelper.ScenePointToGrid(scenePoint);
 
         var data = GameEntry.TempData.ObjectScene.GetSceneObjectData(grid);
-        IsMovingSelObject = data.ObjectUid == GameEntry.TempData.Edit.SelectedBuildData.BuildSceneUid;
+        if (data != null)
+        {
+            IsMovingSelObject = data.ObjectUid == GameEntry.TempData.Edit.SelectedBuildData.BuildSceneUid;
+        }
+        else
+        {
+            IsMovingSelObject = false;
+        }
         ZooController.Inst.EnableSwipe = !IsMovingSelObject;
     }
 

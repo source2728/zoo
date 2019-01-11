@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FairyGUI;
 using GameFramework;
 using GameFramework.Event;
@@ -32,8 +31,14 @@ public class ZooController : MonoBehaviour
 
     public Dictionary<int, ZooObjectController> m_BuildingGoMap = new Dictionary<int, ZooObjectController>();
     public Dictionary<int, StaffController> StaffGoMap = new Dictionary<int, StaffController>();
+    public Dictionary<int, Dictionary<int, AnimalController>> AnimalGoMap = new Dictionary<int, Dictionary<int, AnimalController>>();
+    public int GoVisitorCount = 0;
 
     public GameObject GoCharactorList;
+
+    public Material[] BuildingMaterials;
+    public GameObject[] GoAreaShadows;
+    public UIPanel[] m_BtnUnlockAreas;
 
     void Start()
     {
@@ -41,9 +46,18 @@ public class ZooController : MonoBehaviour
         GameEntry.Event.Subscribe(EvtDataUpdated.EventId, OnEvtDataUpdated);
         GameEntry.Event.Subscribe(EvtTempDataUpdated.EventId, OnEvtTempDataUpdated);
         GameEntry.Event.Subscribe(EvtEventTriggered.EventId, OnEvtEventTriggered);
+        GameEntry.Event.Subscribe(EvtZooBusinessTriggered.EventId, OnEvtZooBusinessTriggered);
+        GameEntry.Event.Subscribe(EvtDataReseted.EventId, OnEvtDataReseted);
 
         GObject holder = m_GesturePanel.ui.GetChild("holder");
         holder.onClick.Add(OnClick);
+
+        for (int i = 0; i < m_BtnUnlockAreas.Length; i++)
+        {
+            UIPanel btnPanel = m_BtnUnlockAreas[i];
+            btnPanel.ui.data = i + 1;
+            btnPanel.ui.onClick.Set(OnClickUnlockArea);
+        }
 
         LongPressGesture = new LongPressGesture(holder);
         LongPressGesture.once = false;
@@ -61,11 +75,61 @@ public class ZooController : MonoBehaviour
         RotationGesture.onAction.Add(OnRotate);
     }
 
+    private void OnEvtDataReseted(object sender, GameEventArgs e)
+    {
+        m_BuildingGoMap.Clear();
+        StaffGoMap.Clear();
+        AnimalGoMap.Clear();
+        GoVisitorCount = 0;
+
+        for (int i = GoCharactorList.transform.childCount - 1; i >= 0; i--)
+        {
+            var child = GoCharactorList.transform.GetChild(i);
+            Destroy(child.gameObject);
+        }
+
+        for (int i = m_BuildingList.transform.childCount - 1; i >= 0; i--)
+        {
+            var child = m_BuildingList.transform.GetChild(i);
+            Destroy(child.gameObject);
+        }
+    }
+
+    private void OnClickUnlockArea(EventContext context)
+    {
+        var btn = context.sender as GComponent;
+        UnlockZooAreaCommand.Do((int)btn.data);
+    }
+
+    private void OnEvtZooBusinessTriggered(object sender, GameEventArgs e)
+    {
+        AddVisitorObject(4);
+    }
+
     private void OnEvtDataUpdated(object sender, GameEventArgs e)
     {
         foreach (var staffData in GameEntry.Database.Staff.StaffList)
         {
             AddStaffObject(staffData.Uid);
+        }
+
+        foreach (var data in GameEntry.Database.FenceArea.FenceAreaList)
+        {
+            RefreshAnimalObject(data);
+        }
+
+        foreach (var go in GoAreaShadows)
+        {
+            go.SetActive(true);
+        }
+        foreach (var panel in m_BtnUnlockAreas)
+        {
+            panel.ui.visible = true;
+        }
+        foreach (var id in GameEntry.Database.Zoo.ZooData.UnlockAreaIds)
+        {
+            GoAreaShadows[id - 1].SetActive(false);
+            m_BtnUnlockAreas[id - 1].ui.visible = false;
         }
     }
 
@@ -85,8 +149,53 @@ public class ZooController : MonoBehaviour
 
     private void AddStaffObject(int staffId)
     {
-        var d = new GameObject("Staff");
-        d.transform.SetParent(GoCharactorList.transform, true);
+        if (!StaffGoMap.ContainsKey(staffId))
+        {
+            var d = new GameObject("Staff");
+            d.transform.SetParent(GoCharactorList.transform, true);
+            var controller = d.AddComponent<StaffController>();
+            controller.StaffId = staffId;
+            StaffGoMap.Add(staffId, controller);
+        }
+    }
+
+    private void AddVisitorObject(int count)
+    {
+        int totalCount = Mathf.Min(5, GoVisitorCount + count);
+        for (int i = GoVisitorCount; i < totalCount; i++)
+        {
+            var d = new GameObject("Visitor");
+            d.transform.SetParent(GoCharactorList.transform, true);
+            var controller = d.AddComponent<VisitorController>();
+        }
+
+        GoVisitorCount = totalCount;
+    }
+
+    private void RefreshAnimalObject(FenceAreaData data)
+    {
+        if (data.AnimalCounts.Count <= 0)
+            return;
+
+        Dictionary<int, AnimalController> map;
+        if (!AnimalGoMap.TryGetValue(data.Uid, out map))
+        {
+            map = new Dictionary<int, AnimalController>();
+            AnimalGoMap.Add(data.Uid, map);
+        }
+
+        foreach (var countData in data.AnimalCounts)
+        {
+            if (!map.ContainsKey(countData.x))
+            {
+                var d = new GameObject("Animal");
+                d.transform.SetParent(GoCharactorList.transform, true);
+                var controller = d.AddComponent<AnimalController>();
+                controller.AnimalId = countData.x;
+                controller.FenceAreaId = data.Uid;
+                map.Add(countData.x, controller);
+            }
+        }        
     }
 
     private void OnEvtTempDataUpdated(object sender, GameEventArgs e)
@@ -121,6 +230,15 @@ public class ZooController : MonoBehaviour
                     zooObjectController.UpdatePosition();
                     zooObjectController.UpdateRotation();
                 }
+
+                if (sceneObjectData.Status == ESceneObjectStatus.Builded)
+                {
+                    zooObjectController.UpdateMaterial(BuildingMaterials[0]);
+                }
+                else
+                {
+                    zooObjectController.UpdateMaterial(BuildingMaterials[1]);
+                }
             }
             else
             {
@@ -131,6 +249,7 @@ public class ZooController : MonoBehaviour
                 }
             }
         }
+        GameEntry.TempData.ObjectScene.DirtyList.Clear();
     }
 
     public void StartGame()
@@ -138,6 +257,7 @@ public class ZooController : MonoBehaviour
         SceneOptController = new SceneOptController();
         SceneOptController.Init();
         RefreshScene();
+        m_CameraCenter.transform.position = new Vector3(10.4f, 0, 6.3f);
     }
 
     public void RefreshScene()
@@ -205,8 +325,16 @@ public class ZooController : MonoBehaviour
         if (EnablePinch)
         {
             PinchGesture gesture = (PinchGesture)context.sender;
-            m_Camera.orthographicSize += gesture.delta * 2;
+            var value = m_Camera.orthographicSize - gesture.delta * 2;
+            value = Mathf.Clamp(value, 3, 8);
+            m_Camera.orthographicSize = value;
         }
+    }
+
+    public void MoveToGrid(Vector2Int grid)
+    {
+        Vector3 position = MapHelper.GridToScenePoint(grid);
+        m_CameraCenter.transform.position = position;
     }
 
     private void OnSwipeBegin(EventContext context)
@@ -224,7 +352,11 @@ public class ZooController : MonoBehaviour
             SwipeGesture gesture = (SwipeGesture)context.sender;
             Vector3 offset = new Vector3(gesture.delta.x, 0, -gesture.delta.y);
             var moveOffset = SceneRotate * offset / GragRatio; moveOffset.y = 0;
-            m_CameraCenter.transform.position = m_CameraCenter.transform.position - moveOffset;
+
+            Vector3 position = m_CameraCenter.transform.position - moveOffset;
+            position.x = Mathf.Clamp(position.x, 0.8f, 38.5f);
+            position.z = Mathf.Clamp(position.z, 0, 40f);
+            m_CameraCenter.transform.position = position;
         }
     }
 
@@ -239,7 +371,11 @@ public class ZooController : MonoBehaviour
                 (GTweener tweener) =>
                 {
                     v = v * 0.8f; v.y = 0;
-                    m_CameraCenter.transform.position = m_CameraCenter.transform.position - v;
+
+                    Vector3 position = m_CameraCenter.transform.position - v;
+                    position.x = Mathf.Clamp(position.x, 0.8f, 38.5f);
+                    position.z = Mathf.Clamp(position.z, 0, 40f);
+                    m_CameraCenter.transform.position = position;
                 });
         }
     }

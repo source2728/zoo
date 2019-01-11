@@ -5,11 +5,9 @@ using FairyGUI.Utils;
 
 namespace Zoo
 {
-	public partial class UI_Achievement : GComponent
+	public partial class UI_Achievement : GLabel
 	{
-		public GLoader m_icon;
-		public GTextField m_title;
-		public GImage m_icon_2;
+		public GImage m_icon1;
 
 		public const string URL = "ui://5voe50hlbfqc3r";
 
@@ -26,9 +24,7 @@ namespace Zoo
 		{
 			base.ConstructFromXML(xml);
 
-			m_icon = (GLoader)this.GetChildAt(1);
-			m_title = (GTextField)this.GetChildAt(2);
-			m_icon_2 = (GImage)this.GetChildAt(3);
+			m_icon1 = (GImage)this.GetChildAt(3);
 		}
 	}
 }

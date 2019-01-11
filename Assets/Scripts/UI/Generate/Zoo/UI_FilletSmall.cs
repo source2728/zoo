@@ -7,6 +7,7 @@ namespace Zoo
 {
 	public partial class UI_FilletSmall : GLabel
 	{
+		public GLoader m_LoaderIcon;
 		public GTextField m_LabelMoney;
 		public GTextField m_LabelCount;
 
@@ -25,8 +26,9 @@ namespace Zoo
 		{
 			base.ConstructFromXML(xml);
 
-			m_LabelMoney = (GTextField)this.GetChildAt(1);
-			m_LabelCount = (GTextField)this.GetChildAt(2);
+			m_LoaderIcon = (GLoader)this.GetChildAt(1);
+			m_LabelMoney = (GTextField)this.GetChildAt(2);
+			m_LabelCount = (GTextField)this.GetChildAt(3);
 		}
 	}
 }

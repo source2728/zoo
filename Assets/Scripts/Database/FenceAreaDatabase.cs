@@ -34,6 +34,18 @@ public class FenceAreaDatabase : BaseDatabase
         return JsonUtility.ToJson(new Serialization<FenceAreaData>(FenceAreaList));
     }
 
+    public FenceAreaData GetFenceAreaData(int uid)
+    {
+        foreach (var data in FenceAreaList)
+        {
+            if (data.Uid == uid)
+            {
+                return data;
+            }
+        }
+        return null;
+    }
+
     public void AddFenceArea(FenceAreaData data)
     {
         IsDirty = true;
@@ -41,7 +53,7 @@ public class FenceAreaDatabase : BaseDatabase
         FenceAreaList.Add(data);
     }
 
-    public void RemoveShop(int uid)
+    public void RemoveFenceArea(int uid)
     {
         IsDirty = true;
         foreach (var data in FenceAreaList)

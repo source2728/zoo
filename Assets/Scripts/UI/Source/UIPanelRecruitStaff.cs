@@ -31,6 +31,7 @@ public class UIPanelRecruitStaff : UIFormWin
         var item = obj as UI_Instructor;
         item.m_LabelName.SetText(data.Name);
         item.m_LabelCost.SetText(data.RecruitCost);
+        item.m_LoaderIcon.SetStaffIcon(data.Id);
     }
 
     private void OnClickItem(EventContext context)

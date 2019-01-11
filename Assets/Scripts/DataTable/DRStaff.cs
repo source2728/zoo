@@ -28,6 +28,12 @@ namespace DataTable
 			protected set;
 		}
 
+		public string ModulePath
+		{
+			get;
+			protected set;
+		}
+
 		public void ParseDataRow(string dataRowText)
 		{
 			string[] text = dataRowText.Split('\t');
@@ -38,6 +44,7 @@ namespace DataTable
 			Name = text[index++];
 			RecruitCost = int.Parse(text[index++]);
 			FireCost = int.Parse(text[index++]);
+			ModulePath = text[index++];
 		}
 
 		private void AvoidJIT()

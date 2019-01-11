@@ -81,8 +81,10 @@ public class ProcedurePreload : ProcedureBase
         CommonBinder.BindAll();
         ZooBinder.BindAll();
 
+        UIPackage.AddPackage("UI/Common");
         UIConfig.defaultFont = "tongxin";
         UIConfig.buttonSound = UIPackage.GetItemAsset("Common", "ButtonClick") as NAudioClip;
+        UIConfig.buttonSoundVolumeScale = 1f;
 
         var resManager = new FGuiResourceManager();
         resManager.Init();

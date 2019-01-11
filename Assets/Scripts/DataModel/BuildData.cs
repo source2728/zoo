@@ -19,7 +19,7 @@ public class BuildData
         switch ((EZooObjectType)BuildType)
         {
             case EZooObjectType.FenceArea:
-                return GameEntry.DataTable.GetDataTableRow<DRFence>(BuildId).BuildCost;
+                return GameEntry.DataTable.GetDataTableRow<DRLand>(BuildId).BuildCost;
 
             case EZooObjectType.Land:
                 return GameEntry.DataTable.GetDataTableRow<DRLand>(BuildId).BuildCost;

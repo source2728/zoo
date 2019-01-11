@@ -13,6 +13,7 @@ public class ZooObjectController : MonoBehaviour
 {
     public BuildData BuildData { get; set; }
     public GameObject BuildObject;
+    public Material CurMaterial;
 
     void Start()
     {
@@ -58,6 +59,7 @@ public class ZooObjectController : MonoBehaviour
         newObject.transform.localRotation = Quaternion.Euler(0, BuildData.Rotate, 0);
         BuildObject = newObject;
         UpdatePosition();
+        UpdateMaterial(CurMaterial);
     }
 
     public void UpdateRotation()
@@ -96,6 +98,22 @@ public class ZooObjectController : MonoBehaviour
             Vector3 rtScenePoint = MapHelper.GridToScenePoint(BuildData.Rect.max - new Vector2Int(1, 1));
             Vector3 scenePoint = (lbScenePoint + rtScenePoint) / 2;
             transform.localPosition = scenePoint;
+        }
+    }
+
+    public void UpdateMaterial(Material material)
+    {
+        CurMaterial = material;
+        if (BuildObject == null)
+            return;
+
+        if (BuildData.BuildType != (int)EZooObjectType.Fence &&
+            BuildData.BuildType != (int)EZooObjectType.FenceConnect &&
+            BuildData.BuildType != (int)EZooObjectType.FenceArea &&
+            BuildData.BuildType != (int)EZooObjectType.Land)
+        {
+            var ddd = BuildObject.GetComponentInChildren<MeshRenderer>();
+            ddd.material = material;
         }
     }
 }

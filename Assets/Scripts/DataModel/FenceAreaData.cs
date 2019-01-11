@@ -9,6 +9,7 @@ public class FenceAreaData
     public int Uid;
     public string Name;
     public List<Vector2Int> Fences = new List<Vector2Int>();
+    public List<Vector2Int> AnimalCounts = new List<Vector2Int>();
 
     public bool HasGrid(int x, int y)
     {
@@ -91,5 +92,44 @@ public class FenceAreaData
             map.Remove(key);
         }
         return map.Keys.ToList();
+    }
+
+    public void AddAnimal(int animalId, int count)
+    {
+        int index = -1;
+        for (int i = 0; i < AnimalCounts.Count; i++)
+        {
+            var info = AnimalCounts[i];
+            if (info.x == animalId)
+            {
+                var newCount = info.y + count;
+                AnimalCounts.Remove(info);
+                AnimalCounts.Add(new Vector2Int(animalId, newCount));
+                index = i;
+                break;
+            }
+        }
+        if (index < 0)
+        {
+            AnimalCounts.Add(new Vector2Int(animalId, count));
+        }
+    }
+
+    public void RemoveAnimal(int animalId, int count)
+    {
+        for (int i = 0; i < AnimalCounts.Count; i++)
+        {
+            var info = AnimalCounts[i];
+            if (info.x == animalId)
+            {
+                var newCount = info.y - count;
+                AnimalCounts.Remove(info);
+                if (newCount > 0)
+                {
+                    AnimalCounts.Add(new Vector2Int(animalId, newCount));
+                }
+                break;
+            }
+        }
     }
 }

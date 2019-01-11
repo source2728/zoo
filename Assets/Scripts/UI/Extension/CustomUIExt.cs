@@ -41,7 +41,7 @@ public static class CustomUIExt
     {
         ui.m_LabelName.SetText(zooData.Name);
         ui.m_StarLevelPopular.SetStarLevel(zooData.Popular);
-        ui.m_StarLevelLike.SetStarLevel(zooData.VisitorLike);
+//        ui.m_StarLevelLike.SetStarLevel(zooData.VisitorLike);
         ui.m_LabelVisitor.SetText(zooData.VisitorCount);
         ui.m_LabelMoney.SetText(money);
         ui.m_LabelIncome.SetText(zooData.ExpectIncome);

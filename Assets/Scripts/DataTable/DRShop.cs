@@ -10,6 +10,12 @@ namespace DataTable
 			protected set;
 		}
 
+		public string Name
+		{
+			get;
+			protected set;
+		}
+
 		public int BuildCost
 		{
 			get;
@@ -71,6 +77,7 @@ namespace DataTable
 			index++;
 			Id = int.Parse(text[index++]);
 			index++;
+			Name = text[index++];
 			BuildCost = int.Parse(text[index++]);
 			UnlockCost = int.Parse(text[index++]);
 			DamageReturn = int.Parse(text[index++]);

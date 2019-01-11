@@ -13,7 +13,6 @@ namespace Zoo
 		public GLabel m_LabelPrice;
 		public GButton m_BtnPlus;
 		public GButton m_BtnMinus;
-		public GComponent m_BtnPointToScene;
 
 		public const string URL = "ui://5voe50hle9494y";
 
@@ -36,7 +35,6 @@ namespace Zoo
 			m_LabelPrice = (GLabel)this.GetChildAt(5);
 			m_BtnPlus = (GButton)this.GetChildAt(6);
 			m_BtnMinus = (GButton)this.GetChildAt(7);
-			m_BtnPointToScene = (GComponent)this.GetChildAt(8);
 		}
 	}
 }

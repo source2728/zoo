@@ -2,19 +2,87 @@
 <UnityGameFramework>
   <AssetBundleCollection>
     <AssetBundles>
-      <AssetBundle Name="Configs" LoadZooEventId="0" Packed="False" />
-      <AssetBundle Name="Databases" LoadZooEventId="0" Packed="False" />
-      <AssetBundle Name="DataTables" LoadZooEventId="0" Packed="False" />
-      <AssetBundle Name="Scenes" LoadZooEventId="0" Packed="True" />
-      <AssetBundle Name="ZooObject" LoadZooEventId="0" Packed="False" />
+      <AssetBundle Name="Configs" LoadType="0" Packed="False" />
+      <AssetBundle Name="DataTables" LoadType="0" Packed="False" />
+      <AssetBundle Name="Prefab" LoadType="0" Packed="False" />
+      <AssetBundle Name="Scenes" LoadType="0" Packed="True" />
     </AssetBundles>
     <Assets>
-      <Asset Guid="437cf1e672324a84cab39828b2d32a82" AssetBundleName="ZooObject" />
+      <Asset Guid="005fd971be6e88d4daad6435e0ceb1e2" AssetBundleName="Prefab" />
+      <Asset Guid="01b46140f0fe62641802c5d48ad08c7d" AssetBundleName="Prefab" />
+      <Asset Guid="026adb2aa5682a648b27c3f9c38b8f5d" AssetBundleName="Prefab" />
+      <Asset Guid="07525c1a69f5a064c8be7285cb8858e3" AssetBundleName="Prefab" />
+      <Asset Guid="111c5f311b10e6345924d307db937918" AssetBundleName="Prefab" />
+      <Asset Guid="1962cc75401b9de448310320f7322d15" AssetBundleName="Prefab" />
+      <Asset Guid="1d235dee00b6648428f21d9ac695452a" AssetBundleName="DataTables" />
+      <Asset Guid="1db01c13fe5d19f4480c72361ebb617c" AssetBundleName="Prefab" />
+      <Asset Guid="1db6adad4b866ee4f835a964fb638476" AssetBundleName="Prefab" />
+      <Asset Guid="2609b1a3793715247bf6e3bf6a0fd904" AssetBundleName="Prefab" />
+      <Asset Guid="303a7a1a874a66744904d002aec89265" AssetBundleName="Prefab" />
+      <Asset Guid="332fe3f166918964fbf679f4c63871c6" AssetBundleName="Prefab" />
+      <Asset Guid="3993d1c4940ff1142ad33c7f9d3e6550" AssetBundleName="Prefab" />
+      <Asset Guid="39dee590e89572d439f163f02719501c" AssetBundleName="Prefab" />
+      <Asset Guid="3a322e2984e152b4cb09753bedac3cc5" AssetBundleName="Prefab" />
+      <Asset Guid="3a74f612a08b4c5459e97b18102c00e8" AssetBundleName="Prefab" />
+      <Asset Guid="3d3be0190c3792b4593787e03a87174c" AssetBundleName="Prefab" />
+      <Asset Guid="3dcd216f67b1d74489514c739025404b" AssetBundleName="DataTables" />
+      <Asset Guid="437cf1e672324a84cab39828b2d32a82" AssetBundleName="Prefab" />
+      <Asset Guid="4de1810e2ec7e3240a8d48a9535de69e" AssetBundleName="DataTables" />
+      <Asset Guid="50d1e6d6c1e048e4ab27b5a5d3add01a" AssetBundleName="Prefab" />
+      <Asset Guid="57686fdf7bc86084694b010da63b45d8" AssetBundleName="Prefab" />
+      <Asset Guid="59fec59cc172d74498835a8e153e2c56" AssetBundleName="Prefab" />
       <Asset Guid="5adae17c658c9f843a61b22c9e9bea57" AssetBundleName="Scenes" />
-      <Asset Guid="6384a2991ab9af247a6472f3df1673de" AssetBundleName="Databases" />
-      <Asset Guid="8f6b8227ef7a7ad4aabf4944a83918ef" AssetBundleName="DataTables" />
+      <Asset Guid="5af3dd79b47ee44488ea1c3af8e64504" AssetBundleName="Prefab" />
+      <Asset Guid="602d650281bc34044b889d858b0ac1f1" AssetBundleName="Prefab" />
+      <Asset Guid="64812e1e1de1a494a96585a6e51fc143" AssetBundleName="Prefab" />
+      <Asset Guid="6b239de1d1203714ea445a10ea08608e" AssetBundleName="Prefab" />
+      <Asset Guid="6f3143b7e6060c844ba0a426031e365b" AssetBundleName="Prefab" />
+      <Asset Guid="71fd2a7f073d9d64181cb3b0dfec0401" AssetBundleName="Prefab" />
+      <Asset Guid="726e5eb01eaaeea4a9e998bcc4bf80a0" AssetBundleName="Prefab" />
+      <Asset Guid="72d10c63fd38d0a4a95fee0a632bea2e" AssetBundleName="Prefab" />
+      <Asset Guid="75d9b970be2f3394bb29299fc14ba33e" AssetBundleName="Prefab" />
+      <Asset Guid="7a3765ca536e8ac448ab373a3de8899f" AssetBundleName="Prefab" />
+      <Asset Guid="7e1186af42c59f54c9ef14733ac808dc" AssetBundleName="Prefab" />
+      <Asset Guid="7e2ca38e04b41804fb139ed7cdd22b7a" AssetBundleName="Prefab" />
+      <Asset Guid="7e978815a273ea34492c08bdd74fbc52" AssetBundleName="Prefab" />
+      <Asset Guid="809f8bad7974e884fafe5e6c13ca5d8d" AssetBundleName="Prefab" />
+      <Asset Guid="80fd1bb8f0cd9d5459fb5598c15bec9e" AssetBundleName="Prefab" />
+      <Asset Guid="85fb70863b6c26445a7d9ea0d0b7d8ae" AssetBundleName="Prefab" />
+      <Asset Guid="8aae937aea5606440a3e8a7fc87028b1" AssetBundleName="Prefab" />
+      <Asset Guid="8cdd21690f5015f4aa09e765a6d15551" AssetBundleName="Prefab" />
+      <Asset Guid="8dce2c54c9a4f1240ab663102b67f9e0" AssetBundleName="Prefab" />
+      <Asset Guid="8eda1f5388a73a849bc07f0d6b9eef8c" AssetBundleName="Configs" />
+      <Asset Guid="90fb67d210d820a42974ac40d4761a2f" AssetBundleName="Prefab" />
+      <Asset Guid="93399e28ac8624048a5197159a64186a" AssetBundleName="DataTables" />
+      <Asset Guid="99599d163c1c50d41a298df4f468a386" AssetBundleName="Prefab" />
+      <Asset Guid="9da03afbcf1c5d842abff4dcf39907e4" AssetBundleName="Prefab" />
+      <Asset Guid="9f533f28ba35f134b88341bc59c82eea" AssetBundleName="Prefab" />
+      <Asset Guid="a71aad1d826ca1347b967ad8544d9c56" AssetBundleName="Prefab" />
       <Asset Guid="a71f8bb1b1b2c51438e2bafc884cb02c" AssetBundleName="DataTables" />
+      <Asset Guid="a875380d1e146fd47bb92acbb21f0fa9" AssetBundleName="Configs" />
       <Asset Guid="ab8c3b9d01fef074087a155949364bf3" AssetBundleName="Configs" />
+      <Asset Guid="b268da4cbc3b6c54dbf45946bb91b6e9" AssetBundleName="Prefab" />
+      <Asset Guid="b4e9df777f8576e47aea37c4aba57db3" AssetBundleName="Prefab" />
+      <Asset Guid="c3feca7564784d9479ae6a9bba7e06fd" AssetBundleName="DataTables" />
+      <Asset Guid="c400aecfb75879745a45148485882d78" AssetBundleName="Prefab" />
+      <Asset Guid="c9f92671ec1df8846be094eb85b4badb" AssetBundleName="Prefab" />
+      <Asset Guid="ccfbf977f164b454db0fbc3aa8d545e9" AssetBundleName="Prefab" />
+      <Asset Guid="cf8952259b403bb4583a78560cadaef5" AssetBundleName="DataTables" />
+      <Asset Guid="d0c5da7d72581af47bc49013b5b0924a" AssetBundleName="Prefab" />
+      <Asset Guid="d188d8c61fb680a4b8ce676d7b9c677f" AssetBundleName="Prefab" />
+      <Asset Guid="d86acffec5de500469e2626d8a54b512" AssetBundleName="Prefab" />
+      <Asset Guid="e2169edd7c4e6b444a13bc86e6fba4bc" AssetBundleName="DataTables" />
+      <Asset Guid="e67721a52154f0e47a7ee38d8e3d6f27" AssetBundleName="Prefab" />
+      <Asset Guid="e935b070c2129804f94bc4472edf1617" AssetBundleName="Prefab" />
+      <Asset Guid="ea834a3f25d7b3b4598d1287e831be74" AssetBundleName="Prefab" />
+      <Asset Guid="eb20806b936b9894aaa5653dd51dc130" AssetBundleName="Prefab" />
+      <Asset Guid="ec9d11c8ec2300d41806255c52aec156" AssetBundleName="DataTables" />
+      <Asset Guid="ef030167143a16046bb514f9419fa772" AssetBundleName="Prefab" />
+      <Asset Guid="f0ffefe62ed05534e8522bc1f591600c" AssetBundleName="Prefab" />
+      <Asset Guid="f2619cb3a8a3e1d4cacc66d1c2364cf0" AssetBundleName="Prefab" />
+      <Asset Guid="f42d27be5fb1a7e4ca4ca0f0780c9f4c" AssetBundleName="Prefab" />
+      <Asset Guid="f5da161ea3ccff34f834b7aebd8b188e" AssetBundleName="Prefab" />
+      <Asset Guid="fdd94ad43d67cb74ca26d0831e1a4f18" AssetBundleName="Prefab" />
     </Assets>
   </AssetBundleCollection>
 </UnityGameFramework>

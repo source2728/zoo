@@ -241,6 +241,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 940b30996ef46d142960ff8006ccd2f5,
     type: 3}
   m_PrefabInternal: {fileID: 8035635}
+--- !u!1 &8035637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: 940b30996ef46d142960ff8006ccd2f5,
+    type: 3}
+  m_PrefabInternal: {fileID: 8035635}
+--- !u!1 &8035638 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 940b30996ef46d142960ff8006ccd2f5,
+    type: 3}
+  m_PrefabInternal: {fileID: 8035635}
+--- !u!1 &8035639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 940b30996ef46d142960ff8006ccd2f5,
+    type: 3}
+  m_PrefabInternal: {fileID: 8035635}
 --- !u!1001 &11284410
 Prefab:
   m_ObjectHideFlags: 0
@@ -651,6 +666,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4381169984450962, guid: 3a322e2984e152b4cb09753bedac3cc5,
     type: 2}
   m_PrefabInternal: {fileID: 27549957}
+--- !u!1 &28301925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 28301926}
+  - component: {fileID: 28301927}
+  m_Layer: 0
+  m_Name: BtnUnlockArea2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &28301926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 28301925}
+  m_LocalRotation: {x: 0.30078566, y: -0.3618343, z: 0.124589495, w: 0.87354535}
+  m_LocalPosition: {x: 27, y: 4, z: 28.7}
+  m_LocalScale: {x: 0.015625, y: 0.015625, z: 0.015625}
+  m_Children: []
+  m_Father: {fileID: 633744837}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 38, y: -45, z: 0}
+--- !u!114 &28301927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 28301925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1430693950, guid: 0d642adbf288a9d48b5460d8d28c83aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  packageName: Common
+  componentName: ButtonLock
+  fitScreen: 0
+  sortingOrder: 0
+  packagePath: UI/Common
+  renderMode: 2
+  renderCamera: {fileID: 0}
+  position: {x: 238, y: 214, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  rotation: {x: 0, y: 0, z: 0}
+  fairyBatching: 0
+  touchDisabled: 0
+  cachedUISize: {x: 48, y: 67}
+  hitTestMode: 0
+  setNativeChildrenOrder: 0
 --- !u!1001 &31930483
 Prefab:
   m_ObjectHideFlags: 0
@@ -7172,6 +7242,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4381169984450962, guid: 3a322e2984e152b4cb09753bedac3cc5,
     type: 2}
   m_PrefabInternal: {fileID: 360878846}
+--- !u!1 &364033130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 364033131}
+  - component: {fileID: 364033132}
+  m_Layer: 0
+  m_Name: BtnUnlockArea3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &364033131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 364033130}
+  m_LocalRotation: {x: 0.30078566, y: -0.3618343, z: 0.124589495, w: 0.87354535}
+  m_LocalPosition: {x: 5.9, y: 4, z: 27.2}
+  m_LocalScale: {x: 0.015625, y: 0.015625, z: 0.015625}
+  m_Children: []
+  m_Father: {fileID: 633744837}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 38, y: -45, z: 0}
+--- !u!114 &364033132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 364033130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1430693950, guid: 0d642adbf288a9d48b5460d8d28c83aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  packageName: Common
+  componentName: ButtonLock
+  fitScreen: 0
+  sortingOrder: 0
+  packagePath: UI/Common
+  renderMode: 2
+  renderCamera: {fileID: 0}
+  position: {x: 238, y: 214, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  rotation: {x: 0, y: 0, z: 0}
+  fairyBatching: 0
+  touchDisabled: 0
+  cachedUISize: {x: 48, y: 67}
+  hitTestMode: 0
+  setNativeChildrenOrder: 0
 --- !u!1001 &364105555
 Prefab:
   m_ObjectHideFlags: 0
@@ -11178,7 +11303,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 543167478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.362528, y: 2.6767762, z: 2.7112002}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13215,6 +13340,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1687135061}
+  - {fileID: 28301926}
+  - {fileID: 364033131}
   - {fileID: 1780836675}
   - {fileID: 1570245756}
   m_Father: {fileID: 0}
@@ -13240,9 +13368,19 @@ MonoBehaviour:
   EnableSwipe: 1
   EnablePinch: 1
   EnableRotation: 1
+  GoVisitorCount: 0
   GoCharactorList: {fileID: 543167478}
-  TestGameObject: {fileID: 1914409325858068, guid: 3993d1c4940ff1142ad33c7f9d3e6550,
-    type: 2}
+  BuildingMaterials:
+  - {fileID: 2100000, guid: 42f3fa0bbd716b449b671cf80173f90d, type: 2}
+  - {fileID: 2100000, guid: 3d1418b31b043ec47918dd6a29ae3c95, type: 2}
+  GoAreaShadows:
+  - {fileID: 8035639}
+  - {fileID: 8035637}
+  - {fileID: 8035638}
+  m_BtnUnlockAreas:
+  - {fileID: 1687135062}
+  - {fileID: 28301927}
+  - {fileID: 364033132}
 --- !u!114 &633744839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20474,7 +20612,7 @@ Camera:
   far clip plane: 100
   field of view: 12
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -31841,7 +31979,7 @@ Transform:
   m_Children:
   - {fileID: 974859139}
   m_Father: {fileID: 633744837}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1572613620
 Prefab:
@@ -33840,6 +33978,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4993751163653510, guid: 8dce2c54c9a4f1240ab663102b67f9e0,
     type: 2}
   m_PrefabInternal: {fileID: 1685624412}
+--- !u!1 &1687135060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687135061}
+  - component: {fileID: 1687135062}
+  m_Layer: 0
+  m_Name: BtnUnlockArea1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687135061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1687135060}
+  m_LocalRotation: {x: 0.30078566, y: -0.3618343, z: 0.124589495, w: 0.87354535}
+  m_LocalPosition: {x: 25.39, y: 4, z: 8.8}
+  m_LocalScale: {x: 0.015625, y: 0.015625, z: 0.015625}
+  m_Children: []
+  m_Father: {fileID: 633744837}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 38, y: -45, z: 0}
+--- !u!114 &1687135062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1687135060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1430693950, guid: 0d642adbf288a9d48b5460d8d28c83aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  packageName: Common
+  componentName: ButtonLock
+  fitScreen: 0
+  sortingOrder: 0
+  packagePath: UI/Common
+  renderMode: 2
+  renderCamera: {fileID: 0}
+  position: {x: 238, y: 214, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  rotation: {x: 0, y: 0, z: 0}
+  fairyBatching: 0
+  touchDisabled: 0
+  cachedUISize: {x: 48, y: 67}
+  hitTestMode: 0
+  setNativeChildrenOrder: 0
 --- !u!1001 &1689490856
 Prefab:
   m_ObjectHideFlags: 0
@@ -35932,7 +36125,7 @@ Transform:
   m_LocalScale: {x: 0.015625, y: 0.015625, z: 0.015625}
   m_Children: []
   m_Father: {fileID: 633744837}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1780836676
 MonoBehaviour:

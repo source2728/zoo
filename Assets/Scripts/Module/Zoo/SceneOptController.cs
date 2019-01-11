@@ -38,8 +38,11 @@ public class SceneOptController
 
     public void HideUISceneOpt()
     {
-        UISceneOpt.transform.SetParent(null, false);
-        UISceneOpt.gameObject.SetActive(false);
+        if (UISceneOpt != null)
+        {
+            UISceneOpt.transform.SetParent(null, false);
+            UISceneOpt.gameObject.SetActive(false);
+        }
     }
 
     private void OnOptRotation()

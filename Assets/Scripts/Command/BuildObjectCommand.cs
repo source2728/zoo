@@ -1,6 +1,7 @@
 ﻿using GameFramework;
 using System.Collections.Generic;
 using System.Linq;
+using DataTable;
 using UnityEngine;
 
 public class BuildObjectCommand : BaseCommand, IGetCurrencyCost
@@ -15,7 +16,7 @@ public class BuildObjectCommand : BaseCommand, IGetCurrencyCost
             if (data.BuildType == (int)EZooObjectType.Shop)
             {
                 var shopData = new ShopData();
-                shopData.Name = "123";
+                shopData.Name = GameEntry.DataTable.GetDataTableRow<DRShop>(data.BuildId).Name;
                 shopData.LeftBottom = data.Rect.position;
                 shopData.Price = 1;
                 shopData.TodayIncome = 2;
@@ -59,6 +60,8 @@ public class BuildObjectCommand : BaseCommand, IGetCurrencyCost
         if (result == ECommandResult.Success)
         {
             GameEntry.UI.ShowTips("建造成功！");
+
+//            ZooController.Inst.RefreshScene();
 
             var evt = ReferencePool.Acquire<EvtFinishEdit>();
             evt.IsConfirmEdit = true;

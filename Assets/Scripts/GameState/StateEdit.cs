@@ -39,6 +39,7 @@ public class StateEdit : FsmState<ProcedureGame>
         m_Fsm.Start<StateEditInUnbatchModeUnSel>();
 
         procedureOwner.SetData<VarInt>("EditState", ProcedureGame.Editing);
+        GameEntry.TempData.ObjectScene.DirtyList.Clear();
     }
 
     protected override void OnUpdate(IFsm<ProcedureGame> procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -56,7 +57,7 @@ public class StateEdit : FsmState<ProcedureGame>
 
         if (editState == ProcedureGame.ConfirmEdit)
         {
-            GameEntry.TempData.ObjectScene.ConfirmEditToBuilded();
+            GameEntry.TempData.ObjectScene.ConfirmEditToEdited();
         }
         else if (editState == ProcedureGame.CancelEdit)
         {
@@ -143,6 +144,7 @@ public class StateEdit : FsmState<ProcedureGame>
     {
         GameEntry.TempData.Edit.AddObjectToEditList(buildData);
         GameEntry.TempData.ObjectScene.UpdateBuildInfoByEdit(buildData.BuildSceneUid, grid);
+        GameEntry.TempData.ObjectScene.DirtyList.Add(buildData.BuildSceneUid);
         GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtTempDataUpdated>());
     }
 
@@ -150,6 +152,7 @@ public class StateEdit : FsmState<ProcedureGame>
     {
         GameEntry.TempData.Edit.AddObjectToEditList(buildData);
         GameEntry.TempData.ObjectScene.UpdateBuildInfoByEdit(buildData.BuildSceneUid, buildData.Rotate - 90);
+        GameEntry.TempData.ObjectScene.DirtyList.Add(buildData.BuildSceneUid);
         GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtTempDataUpdated>());
     }
 

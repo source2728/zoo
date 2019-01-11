@@ -40,6 +40,7 @@ public class StateBuild : FsmState<ProcedureGame>
 
         procedureOwner.SetData<VarInt>("EditState", ProcedureGame.Editing);
         UIZooView.Inst.UI.m_BtnHand.visible = true;
+        GameEntry.TempData.ObjectScene.DirtyList.Clear();
     }
 
     protected override void OnUpdate(IFsm<ProcedureGame> procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -116,6 +117,7 @@ public class StateBuild : FsmState<ProcedureGame>
     public void RotateEditObject(BuildData buildData, ZooObjectController zooObjectController)
     {
         GameEntry.TempData.Edit.UpdateRotationFromEditList(buildData, buildData.Rotate - 90);
+        GameEntry.TempData.ObjectScene.DirtyList.Add(buildData.BuildSceneUid);
         GameEntry.Event.Fire(this, ReferencePool.Acquire<EvtTempDataUpdated>());
     }
 

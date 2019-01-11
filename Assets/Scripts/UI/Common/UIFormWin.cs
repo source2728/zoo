@@ -117,6 +117,11 @@ public class UIFormWin : Window, IUIForm
     protected override void OnHide()
     {
         base.OnHide();
+        DoHide(UserData);
+    }
+
+    protected virtual void DoHide(object userData)
+    {
     }
 
     protected override void DoShowAnimation()

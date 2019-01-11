@@ -7,6 +7,7 @@ namespace Zoo
 {
 	public partial class UI_PanelZooInfo : GComponent
 	{
+		public GLabel m_frame;
 		public GList m_List;
 
 		public const string URL = "ui://5voe50hlvocx35";
@@ -24,6 +25,7 @@ namespace Zoo
 		{
 			base.ConstructFromXML(xml);
 
+			m_frame = (GLabel)this.GetChildAt(0);
 			m_List = (GList)this.GetChildAt(1);
 		}
 	}

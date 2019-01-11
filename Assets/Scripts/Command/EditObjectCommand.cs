@@ -10,12 +10,34 @@ public class EditObjectCommand : BaseCommand, IGetCurrencyCost
     {
         foreach (var data in DamageDataList)
         {
-            GameEntry.Database.Shop.RemoveShop(data.BuildUid);
+            if (data.BuildType == (int) EZooObjectType.Shop)
+            {
+                GameEntry.Database.Shop.RemoveShop(data.BuildUid);
+            }
+            else if (data.BuildType == (int)EZooObjectType.Facility)
+            {
+                GameEntry.Database.Facility.RemoveFacility(data.BuildUid);
+            }
+            else if (data.BuildType == (int)EZooObjectType.Land)
+            {
+                GameEntry.Database.Land.RemoveLand(data.BuildUid);
+            }
         }
 
         foreach (var data in EditDataList)
         {
-            GameEntry.Database.Shop.UpdateShop(data.BuildUid, data.Rect.position, data.Rotate);
+            if (data.BuildType == (int) EZooObjectType.Shop)
+            {
+                GameEntry.Database.Shop.UpdateShop(data.BuildUid, data.Rect.position, data.Rotate);
+            }
+            else if (data.BuildType == (int)EZooObjectType.Facility)
+            {
+                GameEntry.Database.Facility.UpdateFacility(data.BuildUid, data.Rect.position, data.Rotate);
+            }
+            else if (data.BuildType == (int)EZooObjectType.Land)
+            {
+                GameEntry.Database.Land.UpdateLand(data.BuildUid, data.Rect.position, data.Rotate);
+            }
         }
         return ECommandResult.Success;
     }

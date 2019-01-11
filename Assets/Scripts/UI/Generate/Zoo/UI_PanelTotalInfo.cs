@@ -31,10 +31,10 @@ namespace Zoo
 
 			m_ViewState = this.GetControllerAt(0);
 			m_frame = (GLabel)this.GetChildAt(0);
-			m_TabActorInfo = (UI_TabActorInfo)this.GetChildAt(6);
-			m_TabSecretaryInfo = (UI_TabSecretaryInfo)this.GetChildAt(7);
-			m_TabGuardInfo = (UI_TabGuardInfo)this.GetChildAt(8);
-			m_TabZooInfo = (UI_TabZooInfo)this.GetChildAt(9);
+			m_TabActorInfo = (UI_TabActorInfo)this.GetChildAt(7);
+			m_TabSecretaryInfo = (UI_TabSecretaryInfo)this.GetChildAt(8);
+			m_TabGuardInfo = (UI_TabGuardInfo)this.GetChildAt(9);
+			m_TabZooInfo = (UI_TabZooInfo)this.GetChildAt(10);
 		}
 	}
 }

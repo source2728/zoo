@@ -1,5 +1,6 @@
 using System;
 using FairyGUI;
+using GameFramework.Event;
 using Zoo;
 public class UIPanelShopList : UIFormWin
 {
@@ -15,6 +16,12 @@ public class UIPanelShopList : UIFormWin
 
     protected override void DoShown(object userData)
     {
+        GameEntry.Event.Subscribe(EvtJumpToGrid.EventId, OnEvtJumpToGrid);
+    }
+
+    protected override void DoHide(object userData)
+    {
+        GameEntry.Event.Unsubscribe(EvtJumpToGrid.EventId, OnEvtJumpToGrid);
     }
 
     protected override void DoRefresh(object userData)
@@ -29,10 +36,16 @@ public class UIPanelShopList : UIFormWin
         item.m_LabelName.SetText(data.Name);
         item.m_LabelVisitorCount.SetText(data.TodayVisitor);
         item.m_LabelIncome.SetText(data.TodayIncome);
+        item.m_LoaderIcon.SetShopIcon(data.Id);
     }
 
     private void OnClickItem(EventContext context)
     {
         GameEntry.UI.OpenUIForm<UI_PanelShop>(UI.m_List.GetSelectedData<ShopData>());
+    }
+
+    private void OnEvtJumpToGrid(object sender, GameEventArgs e)
+    {
+        Close();
     }
 }

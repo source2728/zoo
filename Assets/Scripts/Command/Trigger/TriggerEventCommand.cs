@@ -9,6 +9,12 @@ public class TriggerEventCommand : BaseCommand
     public override ECommandResult Execute()
     {
         GameEntry.Database.Event.AddEvent(EventId);
+
+        var count = GameEntry.Database.Event.EventList.Count;
+        if (count > 10)
+        {
+            GameEntry.Database.Event.RemoveEvent(count - 10);
+        }
         return ECommandResult.Success;
     }
 

@@ -8,6 +8,7 @@ namespace Zoo
 	public partial class UI_List01 : GComponent
 	{
 		public Controller m_LockState;
+		public GLoader m_LoaderIcon;
 		public GTextField m_LabelName;
 		public GTextField m_LabelUnlockCost;
 
@@ -27,7 +28,8 @@ namespace Zoo
 			base.ConstructFromXML(xml);
 
 			m_LockState = this.GetControllerAt(0);
-			m_LabelName = (GTextField)this.GetChildAt(2);
+			m_LoaderIcon = (GLoader)this.GetChildAt(1);
+			m_LabelName = (GTextField)this.GetChildAt(3);
 			m_LabelUnlockCost = (GTextField)this.GetChildAt(4);
 		}
 	}

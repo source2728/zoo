@@ -1,4 +1,5 @@
 ﻿using DataTable;
+using GameFramework;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
@@ -34,7 +35,8 @@ public class TriggerZooBusinessCommand : BaseCommand
     {
         if (result == ECommandResult.Success)
         {
-//            GameEntry.UI.ShowSecretaryTips("发生突发事件！");
+            var evt = ReferencePool.Acquire<EvtZooBusinessTriggered>();
+            GameEntry.Event.Fire(this, evt);
             return true;
         }
         return false;
